@@ -32,11 +32,14 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        // 1. 將模組引入轉化為瀏覽器全域變數
+      // 1. 將模組引入轉化為瀏覽器全域變數
         const { useState, useEffect, useCallback } = React;
-        const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } = Recharts;
-        const { Plus, Trash2, Edit2, RefreshCw, TrendingUp, TrendingDown, DollarSign, Activity, Globe, AlertCircle, Settings, Wallet, Target, Coffee, Home, Camera, X, Eye, EyeOff, BarChart2 } = lucide;
-
+        
+        // 修正 Recharts 全域抓取方式（相容 UMD 模式）
+        const { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } = (window.Recharts || Recharts);
+        
+        // 修正 Lucide 圖標全域抓取方式
+        const { Plus, Trash2, Edit2, RefreshCw, TrendingUp, TrendingDown, DollarSign, Activity, Globe, AlertCircle, Settings, Wallet, Target, Coffee, Home, Camera, X, Eye, EyeOff, BarChart2 } = (window.lucide || lucide);
         // 2. 預設的投資組合資料
         const DEFAULT_PORTFOLIO = [
           { id: '1', symbol: 'AAPL', shares: 10, cost: 150 },
